@@ -43,13 +43,16 @@
             this.tbxUser.Name = "tbxUser";
             this.tbxUser.Size = new System.Drawing.Size(292, 20);
             this.tbxUser.TabIndex = 0;
+            this.tbxUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             // 
             // tbxPass
             // 
             this.tbxPass.Location = new System.Drawing.Point(13, 178);
             this.tbxPass.Name = "tbxPass";
+            this.tbxPass.PasswordChar = '•';
             this.tbxPass.Size = new System.Drawing.Size(292, 20);
-            this.tbxPass.TabIndex = 0;
+            this.tbxPass.TabIndex = 1;
+            this.tbxPass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             // 
             // label1
             // 
@@ -98,9 +101,8 @@
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(13, 214);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(70, 25);
+            this.lblStatus.Size = new System.Drawing.Size(0, 25);
             this.lblStatus.TabIndex = 3;
-            this.lblStatus.Text = "label3";
             // 
             // Form1
             // 
@@ -116,6 +118,7 @@
             this.Controls.Add(this.tbxUser);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
