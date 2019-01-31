@@ -11,13 +11,13 @@ using System.Data.SQLite;
 
 namespace booksis
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
         // the connection port to sqlite
         SQLiteConnection dbConnection;
 
 
-        public Form1()
+        public Login()
         {
             InitializeComponent();
             //the domain of the port
@@ -50,13 +50,20 @@ namespace booksis
                             }
                             if(count == 1)
                             {
-                                MessageBox.Show("login..");
+                                Dashboard dashboardForm = new Dashboard();
+
+                                Hide();
+                                dashboardForm.ShowDialog();
+                                Close();
+
                             }
                             else if (count == 0)
                             {
                                 lblStatus.Text = "felaktig information!";
                                 lblStatus.ForeColor = Color.Red;
                             }
+
+                            conn.Close();
                         }
 
                     }
