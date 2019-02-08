@@ -104,8 +104,9 @@
             this.lblStatus.Size = new System.Drawing.Size(0, 25);
             this.lblStatus.TabIndex = 3;
             // 
-            // Form1
+            // Login
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(317, 319);
@@ -116,9 +117,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxPass);
             this.Controls.Add(this.tbxUser);
-            this.Name = "Form1";
+            this.Name = "Login";
             this.Text = "Form1";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
