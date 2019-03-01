@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tbxName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbxKlass = new System.Windows.Forms.TextBox();
@@ -47,39 +46,23 @@
             this.label7 = new System.Windows.Forms.Label();
             this.tbxBokNummer = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnHämta = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.columnsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnsklass = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnsÄmne = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnsbookname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnsbookNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnsbookCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnsUtDatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnsåtDatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Namn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Klass = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amne = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bokNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bokNummer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bokKostnad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ütDatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.atDatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dashboardBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dashboardBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.columnsName,
-            this.columnsklass,
-            this.columnsÄmne,
-            this.columnsbookname,
-            this.columnsbookNumber,
-            this.columnsbookCost,
-            this.columnsUtDatum,
-            this.columnsåtDatum});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1.Location = new System.Drawing.Point(292, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(842, 688);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.Visible = false;
             // 
             // tbxName
             // 
@@ -164,13 +147,13 @@
             this.dtpUL.Location = new System.Drawing.Point(13, 374);
             this.dtpUL.Name = "dtpUL";
             this.dtpUL.Size = new System.Drawing.Size(245, 20);
-            this.dtpUL.TabIndex = 4;
+            this.dtpUL.TabIndex = 6;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 397);
+            this.label6.Location = new System.Drawing.Point(12, 432);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(202, 25);
             this.label6.TabIndex = 2;
@@ -178,10 +161,11 @@
             // 
             // dtpÅL
             // 
-            this.dtpÅL.Location = new System.Drawing.Point(13, 425);
+            this.dtpÅL.Enabled = false;
+            this.dtpÅL.Location = new System.Drawing.Point(13, 460);
             this.dtpÅL.Name = "dtpÅL";
             this.dtpÅL.Size = new System.Drawing.Size(245, 20);
-            this.dtpÅL.TabIndex = 5;
+            this.dtpÅL.TabIndex = 7;
             // 
             // btnAdd
             // 
@@ -190,10 +174,10 @@
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(12, 463);
+            this.btnAdd.Location = new System.Drawing.Point(12, 498);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(246, 67);
-            this.btnAdd.TabIndex = 6;
+            this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "lägg till bok";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -203,7 +187,7 @@
             this.tbxKostnad.Location = new System.Drawing.Point(13, 319);
             this.tbxKostnad.Name = "tbxKostnad";
             this.tbxKostnad.Size = new System.Drawing.Size(245, 20);
-            this.tbxKostnad.TabIndex = 3;
+            this.tbxKostnad.TabIndex = 5;
             // 
             // label7
             // 
@@ -220,7 +204,7 @@
             this.tbxBokNummer.Location = new System.Drawing.Point(13, 268);
             this.tbxBokNummer.Name = "tbxBokNummer";
             this.tbxBokNummer.Size = new System.Drawing.Size(245, 20);
-            this.tbxBokNummer.TabIndex = 3;
+            this.tbxBokNummer.TabIndex = 4;
             // 
             // label8
             // 
@@ -232,20 +216,20 @@
             this.label8.TabIndex = 2;
             this.label8.Text = "Bokens nummer";
             // 
-            // button1
+            // btnHämta
             // 
-            this.button1.BackColor = System.Drawing.Color.Blue;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 536);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(246, 67);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Hämta information";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnHämta.BackColor = System.Drawing.Color.Blue;
+            this.btnHämta.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHämta.FlatAppearance.BorderSize = 0;
+            this.btnHämta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHämta.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHämta.Location = new System.Drawing.Point(12, 571);
+            this.btnHämta.Name = "btnHämta";
+            this.btnHämta.Size = new System.Drawing.Size(246, 67);
+            this.btnHämta.TabIndex = 9;
+            this.btnHämta.Text = "Hämta information";
+            this.btnHämta.UseVisualStyleBackColor = false;
+            this.btnHämta.Click += new System.EventHandler(this.btnHämta_Click);
             // 
             // button2
             // 
@@ -254,55 +238,103 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(12, 609);
+            this.button2.Location = new System.Drawing.Point(12, 644);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(246, 67);
-            this.button2.TabIndex = 6;
+            this.button2.TabIndex = 10;
             this.button2.Text = "Exportera till Excel";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // columnsName
+            // dataGridView1
             // 
-            this.columnsName.HeaderText = "Elevens namn";
-            this.columnsName.Name = "columnsName";
-            this.columnsName.ReadOnly = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Namn,
+            this.Klass,
+            this.Amne,
+            this.bokNamn,
+            this.bokNummer,
+            this.bokKostnad,
+            this.ütDatum,
+            this.atDatum});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dataGridView1.Location = new System.Drawing.Point(293, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(841, 713);
+            this.dataGridView1.TabIndex = 7;
             // 
-            // columnsklass
+            // label9
             // 
-            this.columnsklass.HeaderText = "Elevens klass";
-            this.columnsklass.Name = "columnsklass";
-            this.columnsklass.ReadOnly = true;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(260, 9);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(27, 25);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "X";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
-            // columnsÄmne
+            // Namn
             // 
-            this.columnsÄmne.HeaderText = "Ämne";
-            this.columnsÄmne.Name = "columnsÄmne";
+            this.Namn.DividerWidth = 1;
+            this.Namn.HeaderText = "Namn";
+            this.Namn.Name = "Namn";
             // 
-            // columnsbookname
+            // Klass
             // 
-            this.columnsbookname.HeaderText = "Bokens namn";
-            this.columnsbookname.Name = "columnsbookname";
+            this.Klass.DividerWidth = 1;
+            this.Klass.HeaderText = "Klass";
+            this.Klass.Name = "Klass";
             // 
-            // columnsbookNumber
+            // Amne
             // 
-            this.columnsbookNumber.HeaderText = "Bokens nummer";
-            this.columnsbookNumber.Name = "columnsbookNumber";
+            this.Amne.DividerWidth = 1;
+            this.Amne.HeaderText = "Ämne";
+            this.Amne.Name = "Amne";
             // 
-            // columnsbookCost
+            // bokNamn
             // 
-            this.columnsbookCost.HeaderText = "Bokens kostnad";
-            this.columnsbookCost.Name = "columnsbookCost";
+            this.bokNamn.DividerWidth = 1;
+            this.bokNamn.HeaderText = "Bokens namn";
+            this.bokNamn.Name = "bokNamn";
             // 
-            // columnsUtDatum
+            // bokNummer
             // 
-            this.columnsUtDatum.HeaderText = "Utlämningsdatum";
-            this.columnsUtDatum.Name = "columnsUtDatum";
+            this.bokNummer.DividerWidth = 1;
+            this.bokNummer.HeaderText = "Bokens nummer";
+            this.bokNummer.Name = "bokNummer";
             // 
-            // columnsåtDatum
+            // bokKostnad
             // 
-            this.columnsåtDatum.HeaderText = "återlämningsdatum";
-            this.columnsåtDatum.Name = "columnsåtDatum";
+            this.bokKostnad.DividerWidth = 1;
+            this.bokKostnad.HeaderText = "Bokens kostnad";
+            this.bokKostnad.Name = "bokKostnad";
+            // 
+            // ütDatum
+            // 
+            this.ütDatum.DividerWidth = 1;
+            this.ütDatum.HeaderText = "Utlämnings datum";
+            this.ütDatum.Name = "ütDatum";
+            // 
+            // atDatum
+            // 
+            this.atDatum.DividerWidth = 1;
+            this.atDatum.HeaderText = "Återlämnings datum";
+            this.atDatum.Name = "atDatum";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(13, 400);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(118, 29);
+            this.checkBox1.TabIndex = 11;
+            this.checkBox1.Text = "Inlämnad";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // dashboardBindingSource
             // 
@@ -312,9 +344,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 688);
+            this.ClientSize = new System.Drawing.Size(1134, 713);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnHämta);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dtpÅL);
             this.Controls.Add(this.dtpUL);
@@ -332,7 +367,6 @@
             this.Controls.Add(this.tbxKlass);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxName);
-            this.Controls.Add(this.dataGridView1);
             this.Name = "Dashboard";
             this.Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -343,8 +377,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbxKlass;
@@ -365,16 +397,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ämne;
         private System.Windows.Forms.DataGridViewTextBoxColumn utDatum;
         private System.Windows.Forms.DataGridViewTextBoxColumn åtDatum;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnHämta;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.BindingSource dashboardBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnsName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnsklass;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnsÄmne;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnsbookname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnsbookNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnsbookCost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnsUtDatum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnsåtDatum;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Namn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Klass;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amne;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bokNamn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bokNummer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bokKostnad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ütDatum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn atDatum;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

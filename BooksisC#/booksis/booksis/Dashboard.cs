@@ -25,23 +25,7 @@ namespace booksis
         public Dashboard()
         {
             InitializeComponent();
-
-            DataTable dt = new DataTable();
-
-            using (SQLiteConnection conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
-            {
-                conn.Open();
-                using (var cmd = new SQLiteCommand("SELECT * FROM Booksis(namn,klass,kurs,boknamn,boknummer,bokenskostnad,uTdatum,aLDatum) VALUES(@elevensNamn, @elevensKlass, @kurs, @boknamn, @boknummer, @bokKostnad, @utDatum, @atDatum)", conn))
-                {
-
-                    SQLiteDataReader rdr = cmd.ExecuteReader();
-                    rdr.Read();
-
-                    this.dataGridView1.Rows.Add();
-                    this.dataGridView1.Rows[0].Cells[1].Value = rdr.GetString(0);
-                    this.dataGridView1.Rows[0].Cells[2].Value = rdr.GetString(1);
-                }
-            }
+            importInfo();
         }
 
         public void updateDB()
@@ -58,6 +42,7 @@ namespace booksis
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
             using (var conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
             {
                 conn.Open();
@@ -74,9 +59,72 @@ namespace booksis
                     }
                 }
             }
+
+            importInfo();
         }
-            
 
 
+
+        void importInfo()
+        {
+            DataTable dt = new DataTable();
+
+            using (SQLiteConnection conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
+            {
+                conn.Open();
+                using (var cmd = new SQLiteCommand("SELECT * FROM Booksis", conn))
+                {
+
+                    SQLiteDataReader rdr = cmd.ExecuteReader();
+                    while (rdr.Read())
+                    {
+                        dataGridView1.Rows.Add(new object[]
+                            {
+                            rdr.GetValue(rdr.GetOrdinal("namn")),
+                            rdr.GetValue(rdr.GetOrdinal("klass")),
+                            rdr.GetValue(rdr.GetOrdinal("kurs")),
+                            rdr.GetValue(rdr.GetOrdinal("boknamn")),
+                            rdr.GetValue(rdr.GetOrdinal("boknummer")),
+                            rdr.GetValue(rdr.GetOrdinal("bokenskostnad")),
+                            rdr.GetValue(rdr.GetOrdinal("uTdatum")),
+                            rdr.GetValue(rdr.GetOrdinal("aLDatum"))
+                            });
+
+                    }
+
+                }
+            }
+        }
+
+        private void btnHämta_Click(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                tbxName.Text = row.Cells[0].Value.ToString();
+                tbxKlass.Text = row.Cells[1].Value.ToString();
+                tbxÄmne.Text = row.Cells[2].Value.ToString();
+                tbxBokNamn.Text = row.Cells[3].Value.ToString();
+                tbxBokNummer.Text = row.Cells[4].Value.ToString();
+                dtpUL.Text = row.Cells[5].Value.ToString();
+                dtpÅL.Text = row.Cells[6].Value.ToString();
+            }
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            tbxName.Clear();
+            tbxÄmne.Clear();
+            tbxKostnad.Clear();
+            tbxKlass.Clear();
+            tbxBokNummer.Clear();
+            tbxBokNamn.Clear();
+            dtpUL.Value = DateTime.Now;
+            dtpÅL.Value = DateTime.Now;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpÅL.Enabled = checkBox1.Checked;
+        }
     }
 }

@@ -13,6 +13,9 @@ namespace booksis
 {
     public partial class Login : Form
     {
+
+        public bool isLogedin;
+
         // the connection port to sqlite
         SQLiteConnection dbConnection;
 
@@ -51,6 +54,7 @@ namespace booksis
                             if(count == 1)
                             {
                                 Dashboard dashboardForm = new Dashboard();
+                                isLogedin = true;
 
                                 Hide();
                                 dashboardForm.ShowDialog();
