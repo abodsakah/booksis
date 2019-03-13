@@ -8,11 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Runtime.InteropServices;
 
 namespace booksis
 {
     public partial class Login : Form
     {
+
+
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // height of ellipse
+            int nHeightEllipse // width of ellipse
+        );
 
         public bool isLogedin;
 
@@ -27,6 +40,10 @@ namespace booksis
             dbConnection = new SQLiteConnection("Data Source=booksis.sqlite; Version=3");
             //opening the connection to the port
             dbConnection.Open();
+            lblStatus.Text = null;
+
+            this.FormBorderStyle = FormBorderStyle.None;
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -87,5 +104,33 @@ namespace booksis
             }
         }
 
+        int mouseX = 0, mouseY = 0;
+        bool mouseDown;
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                mouseX = MousePosition.X-170;
+                mouseY = MousePosition.Y-20;
+
+                this.SetDesktopLocation(mouseX, mouseY);
+            }
+        }
+
+        private void panel1_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+        }
     }
 }
