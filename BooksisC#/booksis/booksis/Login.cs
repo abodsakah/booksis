@@ -53,12 +53,15 @@ namespace booksis
 
         public void loadData()
         {
+
+            string admin = "admin", teacher = "teacher";
+
             try
             {
                 using (var conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
                 {
                     conn.Open();
-                    using (var cmd = new SQLiteCommand("SELECT username,password FROM login WHERE username='"+this.tbxUser.Text+ "' AND password = '" + this.tbxPass.Text +"'", conn))
+                    using (var cmd = new SQLiteCommand("SELECT username,password,role FROM login WHERE username='"+this.tbxUser.Text+ "' AND password = '" + this.tbxPass.Text +"' AND role='"+admin+"' ", conn))
                     {
 
                         using(var reader = cmd.ExecuteReader())
@@ -70,6 +73,47 @@ namespace booksis
                             }
                             if(count == 1)
                             {
+
+
+                                Dashboard dashboardForm = new Dashboard();
+                                adminPanel aP = new adminPanel();
+                                isLogedin = true;
+
+                                Hide();
+                                aP.ShowDialog();
+                                dashboardForm.ShowDialog();
+                                Close();
+
+                            }
+                            else if (count == 0)
+                            {
+                                lblStatus.Text = "felaktig information!";
+                                lblStatus.ForeColor = Color.Red;
+                            }
+
+                            conn.Close();
+                        }
+
+                    }
+                }
+
+                using (var conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
+                {
+                    conn.Open();
+                    using (var cmd = new SQLiteCommand("SELECT username,password,role FROM login WHERE username='" + this.tbxUser.Text + "' AND password = '" + this.tbxPass.Text + "' AND role='" + teacher + "' ", conn))
+                    {
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            var count = 0;
+                            while (reader.Read())
+                            {
+                                count = count += 1;
+                            }
+                            if (count == 1)
+                            {
+
+
                                 Dashboard dashboardForm = new Dashboard();
                                 isLogedin = true;
 

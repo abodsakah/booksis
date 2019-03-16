@@ -32,32 +32,22 @@ namespace booksis
             lblElevId.Text = null;
         }
 
-        public void updateDB()
-        {
-            using(var conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
-            {
-                conn.Open();
-                using(var cmd = new SQLiteCommand("SELECT ", conn))
-                {
 
-                }
-            }
-        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
             id = rnd.Next(8000);
 
-            dataGridView1.Rows.Clear();
+            metroGrid1.Rows.Clear();
 
-            if (tbxName.Text != null && tbxKlass.Text != null && tbxÄmne.Text != null && tbxBokNamn.Text != null && tbxBokNummer.Text != null && tbxKostnad.Text != null)
+            if (tbxNamn.Text != null && tbxKlass.Text != null && tbxÄmne.Text != null && tbxBokNamn.Text != null && tbxBokNummer.Text != null && tbxBokKostnad.Text != null)
             {
 
                 using (var conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
                 {
                     conn.Open();
-                    using (var cmd = new SQLiteCommand("INSERT INTO Booksis(id,namn,klass,kurs,boknamn,boknummer,bokenskostnad,uTdatum,aLDatum) VALUES('"+id+"','" + tbxName.Text + "','" + tbxKlass.Text + "','" + tbxÄmne.Text + "','" + tbxBokNamn.Text + "','" + tbxBokNummer.Text + "','" + tbxKostnad.Text + " kr" + "','" + dtpUL.Text + "','" + dtpÅL.Text + "')", conn))
+                    using (var cmd = new SQLiteCommand("INSERT INTO Booksis(id,namn,klass,kurs,boknamn,boknummer,bokenskostnad,uTdatum,aLDatum) VALUES('"+id+"','" + tbxNamn.Text + "','" + tbxKlass.Text + "','" + tbxÄmne.Text + "','" + tbxBokNamn.Text + "','" + tbxBokNummer.Text + "','" + tbxBokKostnad.Text + " kr" + "','" + dtpUL.Text + "','" + dtpÅL.Text + "')", conn))
                     {
                         try
                         {
@@ -91,7 +81,7 @@ namespace booksis
                     SQLiteDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {
-                        dataGridView1.Rows.Add(new object[]
+                        metroGrid1.Rows.Add(new object[]
                             {
                             rdr.GetValue(rdr.GetOrdinal("id")),
                             rdr.GetValue(rdr.GetOrdinal("namn")),
@@ -112,15 +102,15 @@ namespace booksis
 
         private void btnHämta_Click(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView1.SelectedRows)
+            foreach(DataGridViewRow row in metroGrid1.SelectedRows)
             {
                 lblElevId.Text = row.Cells[0].Value.ToString();
-                tbxName.Text = row.Cells[1].Value.ToString();
+                tbxNamn.Text = row.Cells[1].Value.ToString();
                 tbxKlass.Text = row.Cells[2].Value.ToString();
                 tbxÄmne.Text = row.Cells[3].Value.ToString();
                 tbxBokNamn.Text = row.Cells[4].Value.ToString();
                 tbxBokNummer.Text = row.Cells[5].Value.ToString();
-                tbxKostnad.Text = row.Cells[6].Value.ToString();
+                tbxBokKostnad.Text = row.Cells[6].Value.ToString();
                 dtpUL.Value = Convert.ToDateTime(row.Cells[7].Value.ToString());
                 dtpÅL.Value = Convert.ToDateTime(row.Cells[8].Value.ToString());
 
@@ -132,9 +122,9 @@ namespace booksis
         private void label9_Click(object sender, EventArgs e)
         {
             lblElevId.Text = null;
-            tbxName.Clear();
+            tbxNamn.Clear();
             tbxÄmne.Clear();
-            tbxKostnad.Clear();
+            tbxBokKostnad.Clear();
             tbxKlass.Clear();
             tbxBokNummer.Clear();
             tbxBokNamn.Clear();
@@ -142,21 +132,48 @@ namespace booksis
             dtpÅL.Value = DateTime.Now;
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            dtpÅL.Enabled = checkBox1.Checked;
-        }
+
 
  
     
         private void btnUpdateInfo_Click(object sender, EventArgs e)
         {
+
+            string rowId="";
             //find the row id
 
+            foreach (DataGridViewRow row in metroGrid1.SelectedRows)
+            {
+                rowId = row.Cells[0].Value.ToString();
+            }
 
             //update row id in DB
 
+
+            using (var conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
+            {
+                conn.Open();
+                using (var cmd = new SQLiteCommand("update Booksis set namn='" + tbxNamn.Text + "',klass='" + tbxKlass.Text + "',kurs='" + tbxÄmne.Text + "',boknamn='" + tbxBokNamn.Text + "',boknummer='" + tbxBokNummer.Text + "', bokenskostnad='" + tbxBokKostnad.Text + "',uTdatum='" + dtpUL.Text + "',aLDatum='" + dtpÅL.Text + "' where id='" + rowId + "'", conn))
+                {
+                    try
+                    {
+                        cmd.ExecuteReader();
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+
             //update grid
+            metroGrid1.Rows.Clear();
+            importInfo();
         }
+
+  
+
+
     }
 }
