@@ -33,6 +33,7 @@ namespace booksis
         SQLiteConnection dbConnection;
 
 
+        
         public Login()
         {
             InitializeComponent();
@@ -51,6 +52,8 @@ namespace booksis
             loadData();
         }
 
+        //looks if the user and pass are avilable in the DB and are right
+        // and then looks of the user is a admin or just a teacher
         public void loadData()
         {
 
@@ -140,6 +143,7 @@ namespace booksis
             }
         }
 
+        //rund loadData method when return is pressed
         private void Form1_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 13)
@@ -151,6 +155,7 @@ namespace booksis
         int mouseX = 0, mouseY = 0;
         bool mouseDown;
 
+        // when mouse is moving , panel moves with mouse
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
             if (mouseDown)
@@ -162,16 +167,19 @@ namespace booksis
             }
         }
 
+        // whe mouse relse panel stops moving
         private void panel1_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDown = false;
         }
 
+        // Closes program
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Close();
         }
-
+        
+        // when mouse down sets mouseDown bool to trew 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;

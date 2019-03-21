@@ -18,6 +18,7 @@ namespace booksis
             InitializeComponent();
         }
 
+        //adds user to DB
         private void metroButton1_Click(object sender, EventArgs e)
         {
             string roll = "";
@@ -49,6 +50,7 @@ namespace booksis
             }
         }
 
+        // Updates pass and/or roll of user in DB
         private void metroButton2_Click(object sender, EventArgs e)
         {
 

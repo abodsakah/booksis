@@ -25,6 +25,8 @@ namespace booksis
         string bokensNummer;
         string bokensKostnad;
 
+        // runs the method "importInfo();" on the programs start
+        // and clears the lblElevId 
         public Dashboard()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace booksis
         }
 
 
-
+        //adds a book to the DB
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
@@ -63,11 +65,12 @@ namespace booksis
 
             }
 
+            //refreashes the grid
             importInfo();
         }
 
 
-
+        //Gets the books information from the DB
         void importInfo()
         {
             DataTable dt = new DataTable();
@@ -100,6 +103,7 @@ namespace booksis
             }
         }
 
+        // Loads the textboxes when the information in the table
         private void btnHämta_Click(object sender, EventArgs e)
         {
             foreach(DataGridViewRow row in metroGrid1.SelectedRows)
@@ -119,6 +123,7 @@ namespace booksis
 
         }
 
+        // Clears all the fields
         private void label9_Click(object sender, EventArgs e)
         {
             lblElevId.Text = null;
@@ -135,7 +140,7 @@ namespace booksis
 
 
  
-    
+        //Update the info in the DB
         private void btnUpdateInfo_Click(object sender, EventArgs e)
         {
 
