@@ -77,6 +77,7 @@ namespace booksis
                             if(count == 1)
                             {
 
+                                Dashboard.teacher = tbxUser.Text;
 
                                 Dashboard dashboardForm = new Dashboard();
                                 adminPanel aP = new adminPanel();
@@ -116,6 +117,7 @@ namespace booksis
                             if (count == 1)
                             {
 
+                                Dashboard.teacher = tbxUser.Text;
 
                                 Dashboard dashboardForm = new Dashboard();
                                 isLogedin = true;

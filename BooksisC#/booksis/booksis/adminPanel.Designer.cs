@@ -40,7 +40,7 @@
             this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.cbRole = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.btnUpdate = new MetroFramework.Controls.MetroButton();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.tbxLösen = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
@@ -197,7 +197,7 @@
             // 
             this.metroTabPage2.Controls.Add(this.cbRole);
             this.metroTabPage2.Controls.Add(this.metroLabel6);
-            this.metroTabPage2.Controls.Add(this.metroButton2);
+            this.metroTabPage2.Controls.Add(this.btnUpdate);
             this.metroTabPage2.Controls.Add(this.metroLabel4);
             this.metroTabPage2.Controls.Add(this.tbxLösen);
             this.metroTabPage2.Controls.Add(this.metroLabel5);
@@ -236,15 +236,15 @@
             this.metroLabel6.TabIndex = 10;
             this.metroLabel6.Text = "roll";
             // 
-            // metroButton2
+            // btnUpdate
             // 
-            this.metroButton2.Location = new System.Drawing.Point(8, 169);
-            this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(245, 32);
-            this.metroButton2.TabIndex = 8;
-            this.metroButton2.Text = "Uppdatera";
-            this.metroButton2.UseSelectable = true;
-            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
+            this.btnUpdate.Location = new System.Drawing.Point(8, 169);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(245, 32);
+            this.btnUpdate.TabIndex = 8;
+            this.btnUpdate.Text = "Uppdatera";
+            this.btnUpdate.UseSelectable = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // metroLabel4
             // 
@@ -353,7 +353,7 @@
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroTextBox tbxUser;
         private MetroFramework.Controls.MetroButton metroButton1;
-        private MetroFramework.Controls.MetroButton metroButton2;
+        private MetroFramework.Controls.MetroButton btnUpdate;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroTextBox tbxLösen;
         private MetroFramework.Controls.MetroLabel metroLabel5;

@@ -34,26 +34,31 @@ namespace booksis
             using (var conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
             {
                 conn.Open();
+
                 using (var cmd = new SQLiteCommand("INSERT INTO login(username,password,role) VALUES('"+tbxUser.Text+"', '"+tbxPass.Text+"', '"+roll+"')", conn))
                 {
+                    string sql = "create table '" + tbxUser.Text + "' (id TEXT, name TEXT, klass TEXT, kurs TEXT, boknamn TEXT, boknummer TEXT ,bokenskostnad TEXT, uTdatum TEXT, aLDatum TEXT)";
                     try
                     {
+                        SQLiteCommand command = new SQLiteCommand(sql, conn);
+                        command.ExecuteNonQuery();
                         cmd.ExecuteReader();
-                        conn.Close();
                         MessageBox.Show("användaren läggs till", "succe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        conn.Close();
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
                 }
+
+
             }
         }
 
-        // Updates pass and/or roll of user in DB
-        private void metroButton2_Click(object sender, EventArgs e)
+        // update password and role
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
-
             string roll = "";
 
             if (cbRole.Text == "admin")
@@ -68,7 +73,7 @@ namespace booksis
             using (var conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
             {
                 conn.Open();
-                using (var cmd = new SQLiteCommand("update login set password='"+tbxLösen.Text+ "',role='"+roll+"'  where username= '" + tbxNamn.Text+"'", conn))
+                using (var cmd = new SQLiteCommand("update login set password='" + tbxLösen.Text + "',role='" + roll + "'  where username= '" + tbxNamn.Text + "'", conn))
                 {
                     try
                     {
@@ -82,7 +87,5 @@ namespace booksis
                 }
             }
         }
-
-
     }
 }

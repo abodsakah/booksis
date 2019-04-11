@@ -66,6 +66,8 @@
             this.colULDatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colÅLDatum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dashboardBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblLärare = new System.Windows.Forms.Label();
+            this.btnUpdateExcel = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dashboardBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -462,7 +464,7 @@
             this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.metroGrid1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.metroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.metroGrid1.Size = new System.Drawing.Size(924, 670);
+            this.metroGrid1.Size = new System.Drawing.Size(924, 705);
             this.metroGrid1.TabIndex = 10;
             // 
             // colId
@@ -523,13 +525,34 @@
             // 
             this.dashboardBindingSource.DataSource = typeof(booksis.Dashboard);
             // 
+            // lblLärare
+            // 
+            this.lblLärare.AutoSize = true;
+            this.lblLärare.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLärare.Location = new System.Drawing.Point(12, 20);
+            this.lblLärare.Name = "lblLärare";
+            this.lblLärare.Size = new System.Drawing.Size(67, 25);
+            this.lblLärare.TabIndex = 2;
+            this.lblLärare.Text = "lärare";
+            // 
+            // btnUpdateExcel
+            // 
+            this.btnUpdateExcel.Location = new System.Drawing.Point(17, 664);
+            this.btnUpdateExcel.Name = "btnUpdateExcel";
+            this.btnUpdateExcel.Size = new System.Drawing.Size(241, 32);
+            this.btnUpdateExcel.TabIndex = 9;
+            this.btnUpdateExcel.Text = "Updatera Excel";
+            this.btnUpdateExcel.UseSelectable = true;
+            this.btnUpdateExcel.Click += new System.EventHandler(this.btnUpdateExcel_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1217, 670);
+            this.ClientSize = new System.Drawing.Size(1217, 705);
             this.Controls.Add(this.metroGrid1);
+            this.Controls.Add(this.btnUpdateExcel);
             this.Controls.Add(this.metroButton3);
             this.Controls.Add(this.metroButton2);
             this.Controls.Add(this.metroButton1);
@@ -550,6 +573,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblElevId);
+            this.Controls.Add(this.lblLärare);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -599,5 +623,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colBokensKostnad;
         private System.Windows.Forms.DataGridViewTextBoxColumn colULDatum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colÅLDatum;
+        private System.Windows.Forms.Label lblLärare;
+        private MetroFramework.Controls.MetroButton btnUpdateExcel;
     }
 }

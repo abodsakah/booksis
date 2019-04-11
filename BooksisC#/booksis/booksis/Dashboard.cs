@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using GemBox.Spreadsheet;
+using GemBox.Spreadsheet.WinFormsUtilities;
+
+
 
 namespace booksis
 {
@@ -19,19 +23,30 @@ namespace booksis
         Random rnd = new Random();
         int id;
 
+
         string elevensNamn;
         string elevensKlass;
         string bokensNamn;
         string bokensNummer;
         string bokensKostnad;
+        public static string teacher;
 
         // runs the method "importInfo();" on the programs start
         // and clears the lblElevId 
+
+
         public Dashboard()
         {
             InitializeComponent();
             importInfo();
             lblElevId.Text = null;
+            lblLärare.Text = teacher;
+            /* 
+            *  /////////////////////////////////////////////////////I
+            *  | this includes the licenses for the gembox library |I
+            *  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\I
+            */
+            SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
         }
 
 
@@ -49,7 +64,7 @@ namespace booksis
                 using (var conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
                 {
                     conn.Open();
-                    using (var cmd = new SQLiteCommand("INSERT INTO Booksis(id,namn,klass,kurs,boknamn,boknummer,bokenskostnad,uTdatum,aLDatum) VALUES('"+id+"','" + tbxNamn.Text + "','" + tbxKlass.Text + "','" + tbxÄmne.Text + "','" + tbxBokNamn.Text + "','" + tbxBokNummer.Text + "','" + tbxBokKostnad.Text + " kr" + "','" + dtpUL.Text + "','" + dtpÅL.Text + "')", conn))
+                    using (var cmd = new SQLiteCommand("INSERT INTO '" + teacher + "'(id,namn,klass,kurs,boknamn,boknummer,bokenskostnad,uTdatum,aLDatum) VALUES('" + id + "','" + tbxNamn.Text + "','" + tbxKlass.Text + "','" + tbxÄmne.Text + "','" + tbxBokNamn.Text + "','" + tbxBokNummer.Text + "','" + tbxBokKostnad.Text + " kr" + "','" + dtpUL.Text + "','" + dtpÅL.Text + "')", conn))
                     {
                         try
                         {
@@ -78,7 +93,7 @@ namespace booksis
             using (SQLiteConnection conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
             {
                 conn.Open();
-                using (var cmd = new SQLiteCommand("SELECT * FROM Booksis", conn))
+                using (var cmd = new SQLiteCommand("SELECT * FROM '" + teacher + "'", conn))
                 {
 
                     SQLiteDataReader rdr = cmd.ExecuteReader();
@@ -106,7 +121,7 @@ namespace booksis
         // Loads the textboxes when the information in the table
         private void btnHämta_Click(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in metroGrid1.SelectedRows)
+            foreach (DataGridViewRow row in metroGrid1.SelectedRows)
             {
                 lblElevId.Text = row.Cells[0].Value.ToString();
                 tbxNamn.Text = row.Cells[1].Value.ToString();
@@ -119,7 +134,7 @@ namespace booksis
                 dtpÅL.Value = Convert.ToDateTime(row.Cells[8].Value.ToString());
 
             }
- 
+
 
         }
 
@@ -139,12 +154,12 @@ namespace booksis
 
 
 
- 
+
         //Update the info in the DB
         private void btnUpdateInfo_Click(object sender, EventArgs e)
         {
 
-            string rowId="";
+            string rowId = "";
             //find the row id
 
             foreach (DataGridViewRow row in metroGrid1.SelectedRows)
@@ -158,7 +173,7 @@ namespace booksis
             using (var conn = new SQLiteConnection(@"Data Source=C:\Users\abdsak11\Documents\GitHub\booksis\BooksisC#\booksis\booksis.sqlite;Version=3;New=False;Compress=True;"))
             {
                 conn.Open();
-                using (var cmd = new SQLiteCommand("update Booksis set namn='" + tbxNamn.Text + "',klass='" + tbxKlass.Text + "',kurs='" + tbxÄmne.Text + "',boknamn='" + tbxBokNamn.Text + "',boknummer='" + tbxBokNummer.Text + "', bokenskostnad='" + tbxBokKostnad.Text + "',uTdatum='" + dtpUL.Text + "',aLDatum='" + dtpÅL.Text + "' where id='" + rowId + "'", conn))
+                using (var cmd = new SQLiteCommand("update '" + teacher + "' set namn='" + tbxNamn.Text + "',klass='" + tbxKlass.Text + "',kurs='" + tbxÄmne.Text + "',boknamn='" + tbxBokNamn.Text + "',boknummer='" + tbxBokNummer.Text + "', bokenskostnad='" + tbxBokKostnad.Text + "',uTdatum='" + dtpUL.Text + "',aLDatum='" + dtpÅL.Text + "' where id='" + rowId + "'", conn))
                 {
                     try
                     {
@@ -177,8 +192,27 @@ namespace booksis
             importInfo();
         }
 
-  
+        private void btnUpdateExcel_Click(object sender, EventArgs e)
+        {
+            // the saving dialog
+            var saveFileDialog = new SaveFileDialog();
+            // the types of files that can be saved
+            saveFileDialog.Filter = "XLS files (*.xls)|*.xls|XLT files (*.xlt)|*.xlt|XLSX files (*.xlsx)|*.xlsx|XLSM files (*.xlsm)|*.xlsm|XLTX (*.xltx)|*.xltx|XLTM (*.xltm)|*.xltm|ODS (*.ods)|*.ods|OTS (*.ots)|*.ots|CSV (*.csv)|*.csv|TSV (*.tsv)|*.tsv|HTML (*.html)|*.html|MHTML (.mhtml)|*.mhtml|PDF (*.pdf)|*.pdf|XPS (*.xps)|*.xps|BMP (*.bmp)|*.bmp|GIF (*.gif)|*.gif|JPEG (*.jpg)|*.jpg|PNG (*.png)|*.png|TIFF (*.tif)|*.tif|WMP (*.wdp)|*.wdp";
+            saveFileDialog.FilterIndex = 3;
 
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // create a new excel file
+                var workbook = new ExcelFile();
+                // add a new excel sheet
+                var worksheet = workbook.Worksheets.Add("Sheet1");
 
+                // From metrogrid1 to ExcelFile.
+                DataGridViewConverter.ImportFromDataGridView(worksheet, this.metroGrid1, new ImportFromDataGridViewOptions() { ColumnHeaders = true });
+
+                // saves the file
+                workbook.Save(saveFileDialog.FileName);
+            }
+        }
     }
 }
